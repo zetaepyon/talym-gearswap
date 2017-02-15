@@ -67,9 +67,6 @@ function user_setup()
     data.gear_stats['Toetapper Mantle'].dual_wield = 2
 
     classes.Hastes = S{'Haste','March','Embrava','Haste Samba','Mighty Guard'}
-    classes.AbilityFallback = T{
-        ["Provoke"] = "Violent Flourish",
-    }
 
     -- State variables for haste & delay reduction calculation and display
     state.March1 = 'Honor March'
@@ -534,7 +531,7 @@ function job_precast(spell, action, spellMap, eventArgs)
     if spell.type == "JobAbility" then
         auto_fallback(spell,classes.AbilityFallback)
     end
-    auto_presto()
+    auto_presto(spell)
 end
 
 
@@ -734,14 +731,13 @@ function job_self_command(cmdParams, eventArgs)
 end
 
 
--- Automatically use Presto for steps when it's available and we have less than 5 finishing moves
+-- Automatically use Presto for steps when it's available and we have less than 6 finishing moves
 function auto_presto(spell)
     if spell.type == 'Step' then
         local allRecasts = windower.ffxi.get_ability_recasts()
         local prestoCooldown = allRecasts[236]
-        local under5FMs = not buffactive['Finishing Move 5']
 
-        if player.main_job_level >= 77 and prestoCooldown < 1 and under5FMs then
+        if player.main_job_level >= 77 and prestoCooldown < 1 and not buffactive['Finishing Move (6+)'] then
             cast_delay(1.1)
             send_command('@input /ja "Presto" <me>')
         end
