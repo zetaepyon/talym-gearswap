@@ -69,14 +69,8 @@ function user_setup()
     classes.Hastes = S{'Haste','March','Embrava','Haste Samba','Mighty Guard'}
 
     -- State variables for haste & delay reduction calculation and display
-    --state.March1 = 'Victory March'
-    --state.March2 = 'Advancing March'
-    state.VictoryMarch = 17
-    state.AdvancingMarch = 14
-    --state.HonorMarch = 15
-    --state.IndiHaste = 40
-    --state.GeoHaste = 40
-    --state.EquipmentHaste = 25  -- Assumed value of equipment haste
+    state.March1 = 'Honor March'
+    state.March2 = 'Victory March'
     state.DelayReduction = 0
     state.TotalHaste = 0
     state.DualWield = 5
@@ -85,24 +79,6 @@ function user_setup()
     state.HybridMode:options('Normal', 'DT', 'PDT', 'MDT', 'Turtle')
     state.WeaponskillMode:options('Normal', 'Acc')
 
-    -- Custom gear definitions
-    --[[gear.back.reverse = "Toetapper Mantle" --{ name="Toetapper Mantle", augments={'"Store TP"+2','"Rev. Flourish"+29',}}
-    gear.back.tp = { name="Senuna's Mantle", augments={'DEX+20','Accuracy+20 Attack+20','"Dbl.Atk."+10',}}
-    gear.back.wsd = { name="Senuna's Mantle", augments={'STR+10','DEX+20','Accuracy+20 Attack+20','Weapon skill damage +10%',}}
-
-    gear.feet.tp = { name="Herculean Boots", augments={'"Triple Atk."+4','DEX+10','Accuracy+15',}}
-    gear.feet.acc = { name="Herculean Boots", augments={'Accuracy+25 Attack+25','STR+10','Accuracy+15','Attack+5',}}
-    gear.feet.ws = gear.feet.tp
-
-    gear.hands.acc = { name="Adhemar Wristbands", augments={'DEX+10','AGI+10','Accuracy+15'}}
-    gear.hands.atk = { name="Adhemar Wristbands", augments={'STR+10','DEX+10','Attack+15'}}
-
-    --gear.body.tp = { name="Herculean Vest", augments={'"Dbl.Atk."+1','Crit.hit rate+3','Quadruple Attack +2',}}
-    gear.body.tp = { name="Herculean Vest", augments={'Accuracy+20 Attack+20','"Store TP"+6','STR+10','Accuracy+11','Attack+7',}}
-    gear.body.acc = { name="Herculean Vest", augments={'Accuracy+23 Attack+23','Crit.hit rate+2','Accuracy+15','Attack+7',}}
-
-    gear.head.wsd = { name="Herculean Helm", augments={'Accuracy+11 Attack+11','Weapon skill damage +3%','DEX+15',}},
-    ]]--
     -- Additional local binds
     global_on_unload() --Unload default Mote keybinds
 
@@ -126,8 +102,6 @@ function user_setup()
     send_command('gs validate')
 
     random_lockstyle(8,17,18,31,37,38,39,60)
-    --random_lockstyle()
-    --random_lockstyle(2)
 
     select_default_macro_book()
 end
@@ -160,7 +134,6 @@ function init_gear_sets()
     -- Waltz set (chr and vit)
     sets.precast.Waltz = { --> CHR +105  VIT +110  Potency +52(50)%  Received +10%  Delay -1
         ammo="Yamarang",                            --> Potency +5%
-        --head="Horos Tiara +1",                      --> CHR +16  VIT +15  Potency +11%
         head="Anwig Salade",                        --> CHR +4  VIT +4  Delay -2
         neck="Unmoving Collar +1",                  --> CHR +9  VIT +9
         ear1="Roundel Earring",                     --> Potency +5%
@@ -175,22 +148,7 @@ function init_gear_sets()
         feet="Maxixi Shoes +1",                     --> CHR +30  VIT +20  Potency +10%
     }
 
-    --[[sets.precast.WaltzAlt = { -- CHR +135  VIT +88  Potency +50(50)%  Received +10%  Delay -3
-        ammo="Yamarang",                            --> Potency +5%
-        head="Anwig Salade",                        --> CHR +4  Delay -2
-        neck="Unmoving Collar +1",                  --> CHR +9  VIT +9
-        ear1="Roundel Earring",                     --> Potency +5%
-        ear2="Etiolation Earring",
-        body="Maxixi Casaque +2",                   --> CHR +28  VIT +29  Potency +17%  Received +7%  Delay -2
-        hands="Herculean Gloves",                   --> CHR +34  VIT +30  Potency +10%
-        ring1="Defending Ring",
-        ring2="Asklepian Ring",                     --> Received +3%
-        back="Senuna's Cape",                       --> CHR +30
-        waist="Flume Belt",
-        legs="Desultor Tassets",                    --> TP Cost -50
-        feet="Maxixi Shoes +1",                     --> CHR +30  VIT +20  Potency +10%
-    }
-
+    --[[
     sets.precast.WaltzMax = { -- CHR +150  VIT +95  Potency +56(50)%  Received +11%  Delay -4
         ammo="Yamarang",                            --> Potency +5%
         head="Anwig Salade",                        --> CHR +4  Delay -2
@@ -211,7 +169,7 @@ function init_gear_sets()
         head="Anwig Salade",                        --> Delay -2
         body="Maxixi Casaque +2",                   --> Delay -1
         legs="Desultor Tassets",                    --> TP Cost -50
-    }        --> Don't need any special gear for Healing Waltz.
+    }
 
     sets.precast.Samba = {
         head="Maxixi Tiara",    --+1                --> "Samba" duration +40s --+45s
@@ -557,19 +515,6 @@ function init_gear_sets()
         end
     end
 
-    --[[sets.engaged.DT = set_combine(sets.engaged, sets.DT)
-    sets.engaged.PDT = set_combine(sets.engaged, sets.PDT)
-    sets.engaged.MDT = set_combine(sets.engaged, sets.MDT)
-    sets.engaged.Turtle = set_combine(sets.engaged, sets.Turtle)
-    sets.engaged.Acc.DT = set_combine(sets.engaged.Acc, sets.DT)
-    sets.engaged.Acc.PDT = set_combine(sets.engaged.Acc, sets.PDT)
-    sets.engaged.Acc.MDT = set_combine(sets.engaged.Acc, sets.MDT)
-    sets.engaged.Acc.Turtle = set_combine(sets.engaged.Acc, sets.Turtle)
-    sets.engaged.Acc2.DT = set_combine(sets.engaged.Acc2, sets.DT)
-    sets.engaged.Acc2.PDT = set_combine(sets.engaged.Acc2, sets.PDT)
-    sets.engaged.Acc2.MDT = set_combine(sets.engaged.Acc2, sets.MDT)
-    sets.engaged.Acc2.Turtle = set_combine(sets.engaged.Acc2, sets.Turtle)]]--
-
     -- Buff sets: Gear that needs to be worn to actively enhance a current player buff.
     sets.buff['Climactic Flourish'] = { head="Maculele Tiara +1", }
     sets.buff['Sleep'] = { head="Frenzy Sallet", }
@@ -583,7 +528,10 @@ end
 -- Set eventArgs.handled to true if we don't want any automatic gear equipping to be done.
 -- Set eventArgs.useMidcastGear to true if we want midcast gear equipped on precast.
 function job_precast(spell, action, spellMap, eventArgs)
-    --auto_presto(spell)
+    if spell.type == "JobAbility" then
+        auto_fallback(spell,classes.AbilityFallback)
+    end
+    auto_presto(spell)
 end
 
 
@@ -620,10 +568,6 @@ function job_buff_change(buff,gain,eventArgs,buff_details)
 
         handle_equipping_gear(player.status)
 
-        --if state.TotalHaste then state.TotalHaste = total_haste end
-        windower.add_to_chat(006, string.format("Total Haste: %2d%% (M:%2d J:%2d E:%2d)", haste[1], haste[2], haste[3], haste[4]))
-        windower.add_to_chat(006, string.format("Delay Reduction: %2.2f%%", delay))
-
     end
 
     -- Monitor for other buffs/debuffs and adjust gear set
@@ -643,10 +587,6 @@ function buff_refresh(buff, buff_details)
         local delay = calc_delay_reduction(haste[1])
 
         handle_equipping_gear(player.status)
-
-        --if state.TotalHaste then state.TotalHaste = total_haste end
-        --windower.add_to_chat(006, string.format("Total Haste: %2d%% (M:%2d J:%2d E:%2d)", haste[1], haste[2], haste[3], haste[4]))
-        --windower.add_to_chat(006, string.format("Delay Reduction: %2.2f%%", delay))
 
     end
 
@@ -791,14 +731,13 @@ function job_self_command(cmdParams, eventArgs)
 end
 
 
--- Automatically use Presto for steps when it's available and we have less than 3 finishing moves
+-- Automatically use Presto for steps when it's available and we have less than 6 finishing moves
 function auto_presto(spell)
     if spell.type == 'Step' then
         local allRecasts = windower.ffxi.get_ability_recasts()
         local prestoCooldown = allRecasts[236]
-        local under3FMs = not buffactive['Finishing Move 3'] and not buffactive['Finishing Move 4'] and not buffactive['Finishing Move 5']
 
-        if player.main_job_level >= 77 and prestoCooldown < 1 and under3FMs then
+        if player.main_job_level >= 77 and prestoCooldown < 1 and not buffactive['Finishing Move (6+)'] then
             cast_delay(1.1)
             send_command('@input /ja "Presto" <me>')
         end
@@ -817,11 +756,5 @@ function select_default_macro_book()
         set_macro_page(1, 3)
     else
         set_macro_page(1, 3)
-    end
-end
-
-function job_handle_equipping_gear(status, eventArgs)
-    if status == 'Engaged' and player.equipment.range == 'Compensator' then
-        windower.add_to_chat(167, 'Compensating for something?')
     end
 end
