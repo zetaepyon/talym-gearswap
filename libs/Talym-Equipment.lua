@@ -41,8 +41,9 @@ gear.body.Herculean.TA = { name="Herculean Vest", augments={'Accuracy+24','"Trip
 gear.body.Herculean.WS = gear.body.Herculean.TA
 gear.body.Herculean.Acc = gear.body.Herculean.TA
 
-gear.body.Merlinic.MAB = { name="Merlinic Jubbah", augments={'Mag. Acc.+25 "Mag.Atk.Bns."+25','Magic burst mdg.+9%','CHR+6',}}
-gear.body.Merlinic.FC = { name="Merlinic Jubbah", augments={'Mag. Acc.+1 "Mag.Atk.Bns."+1','"Fast Cast"+5','Mag. Acc.+14','"Mag.Atk.Bns."+3',}}
+gear.body.Merlinic.MAB = { name="Merlinic Jubbah", augments={'Mag. Acc.+23 "Mag.Atk.Bns."+23','Magic burst mdg.+11%','MND+2',}}
+gear.body.Merlinic.FC = { name="Merlinic Jubbah", augments={'"Mag.Atk.Bns."+29','"Fast Cast"+6','DEX+8','Mag. Acc.+11',}}
+gear.body.Merlinic.Draspir = { name="Merlinic Jubbah", augments={'"Mag.Atk.Bns."+16','"Drain" and "Aspir" potency +10','INT+8','Mag. Acc.+5',}}
 gear.body.Merlinic.Burst = gear.body.Merlinic.MAB
 gear.body.Merlinic.MAcc = gear.body.Merlinic.MAB
 
