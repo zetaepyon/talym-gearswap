@@ -31,7 +31,7 @@ end
 define_gear()
 
 gear.main.Grioavolr.FC = { name="Grioavolr", augments={'"Fast Cast"+7','MND+7','Mag. Acc.+13','"Mag.Atk.Bns."+9',}}
-gear.main.Grioavolr.Burst = { name="Grioavolr", augments={'Magic burst mdg.+8%','MND+8','Mag. Acc.+19','"Mag.Atk.Bns."+23','Magic Damage +4',}}
+gear.main.Grioavolr.Burst = { name="Grioavolr", augments={ name="Grioavolr", augments={'Magic burst mdg.+6%','MP+86','Mag. Acc.+10','"Mag.Atk.Bns."+26',}}
 
 gear.head.Herculean.WSD = { name="Herculean Helm", augments={'Accuracy+11 Attack+11','Weapon skill damage +3%','DEX+15',}}
 
